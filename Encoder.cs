@@ -15,7 +15,7 @@ namespace DvMod.RadioBridge
         {
             lame.InputSampleRate = 48000;
             lame.NumChannels = 2;
-            lame.BitRate = 160;
+            lame.BitRate = 320;
             if (!lame.InitParams())
                 throw new Exception("Failed to initialize LibMp3Lame");
         }
