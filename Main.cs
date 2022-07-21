@@ -50,17 +50,20 @@ namespace DvMod.RadioBridge
 
         public static void DebugLog(string msg)
         {
-            mod!.Logger.Log(msg);
+            if (settings.enableLogging)
+                mod!.Logger.Log(msg);
         }
 
         public static void DebugLog(Func<string> msg)
         {
-            DebugLog(msg());
+            if (settings.enableLogging)
+                DebugLog(msg());
         }
 
         public static void DebugLog(Func<string> msg, Exception e)
         {
-            mod!.Logger.LogException(msg(), e);
+            if (settings.enableLogging)
+                mod!.Logger.LogException(msg(), e);
         }
     }
 }
