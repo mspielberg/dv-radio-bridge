@@ -17,17 +17,6 @@
     <Reference Include="Assembly-CSharp" />
     <Reference Include="CTNAudio" />
     <Reference Include="DV.RadioPlayer"/>
-    <!--
-    <Reference Include="DV.BrakeSystem"/>
-    <Reference Include="DV.Interaction"/>
-    <Reference Include="DV.PointSet"/>
-    <Reference Include="DV.Utils"/>
-    <Reference Include="UnityEngine.AssetBundleModule"/>
-    <Reference Include="UnityEngine.AudioModule"/>
-    <Reference Include="UnityEngine.ParticleSystemModule"/>
-    <Reference Include="UnityEngine.PhysicsModule"/>
-    <Reference Include="net.smkd.vector3d"/>
-    -->
     <Reference Include="LameDLLWrap" />
     <Reference Include="PlaylistsNET113" />
     <Reference Include="UnityEngine.CoreModule" />
