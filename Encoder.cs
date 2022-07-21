@@ -21,26 +21,26 @@ namespace DvMod.RadioBridge
 
         public void Encode(byte[] pcm, int length, Stream output)
         {
-            Main.DebugLog($"Entering Encoder.Encode with {length} bytes of input");
+            // Main.DebugLog($"Entering Encoder.Encode with {length} bytes of input");
             if (length / 2 > uncompressed.Length)
                 throw new Exception("received too much data for uncompressed buffer");
             for (int i = 0; i < length / 2; i++)
                 uncompressed[i] = BitConverter.ToInt16(pcm, i * 2);
-            Main.DebugLog($"Translated to {length / 2} shorts");
+            // Main.DebugLog($"Translated to {length / 2} shorts");
             int mp3ByteCount = lame.Write(uncompressed, length / 2, compressed, compressed.Length, false);
             if (mp3ByteCount < 0)
                 throw new Exception($"Error from LAME: {mp3ByteCount}");
-            Main.DebugLog($"received {mp3ByteCount} from lame.Write");
+            // Main.DebugLog($"received {mp3ByteCount} from lame.Write");
             output.Write(compressed, 0, mp3ByteCount);
         }
 
         public void Flush(Stream output)
         {
-            Main.DebugLog("Flushing LAME encoder");
+            // Main.DebugLog("Flushing LAME encoder");
             int mp3ByteCount = lame.Flush(compressed, compressed.Length);
             if (mp3ByteCount < 0)
                 throw new Exception($"Error from LAME: {mp3ByteCount}");
-            Main.DebugLog($"received {mp3ByteCount} from lame.Write");
+            // Main.DebugLog($"received {mp3ByteCount} from lame.Write");
             output.Write(compressed, 0, mp3ByteCount);
         }
     }

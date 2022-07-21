@@ -1,7 +1,7 @@
 using Crosstales.NAudio.Wave;
-using Crosstales.NAudio.Wave.Compression;
 using System;
 using System.IO;
+using System.Net.Sockets;
 
 namespace DvMod.RadioBridge
 {
@@ -9,7 +9,7 @@ namespace DvMod.RadioBridge
     {
         private readonly WaveInEvent waveIn = new WaveInEvent();
         private Encoder? encoder;
-        private Stream? output;
+        private readonly Stream output;
 
         public Recording(Stream outputStream)
         {
@@ -50,14 +50,14 @@ namespace DvMod.RadioBridge
 
         private void OnDataAvailable(object sender, WaveInEventArgs args)
         {
-            Main.DebugLog(() => $"Got buffer with {args.BytesRecorded} bytes of PCM WAV data");
+            // Main.DebugLog(() => $"Got buffer with {args.BytesRecorded} bytes of PCM WAV data");
             encoder!.Encode(args.Buffer, args.BytesRecorded, output!);
         }
 
         private void OnRecordingStopped(object sender, StoppedEventArgs args)
         {
             output!.Close();
-            if (args.Exception != null)
+            if (args.Exception != null && !(args.Exception is SocketException))
                 Main.DebugLog(() => "Recording stopped with exception:", args.Exception);
         }
     }
