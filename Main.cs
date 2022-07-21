@@ -8,14 +8,27 @@ namespace DvMod.RadioBridge
     public static class Main
     {
         public static UnityModManager.ModEntry? mod;
+        public static readonly Settings settings = new Settings();
 
         static public bool Load(UnityModManager.ModEntry modEntry)
         {
             mod = modEntry;
 
+            modEntry.OnGUI = OnGUI;
+            modEntry.OnSaveGUI = OnSaveGUI;
             modEntry.OnToggle = OnToggle;
 
             return true;
+        }
+
+        static private void OnGUI(UnityModManager.ModEntry modEntry)
+        {
+            settings.Draw(modEntry);
+        }
+
+        static private void OnSaveGUI(UnityModManager.ModEntry modEntry)
+        {
+            settings.Save(modEntry);
         }
 
         static private bool OnToggle(UnityModManager.ModEntry modEntry, bool value)
@@ -25,10 +38,11 @@ namespace DvMod.RadioBridge
             {
                 harmony.PatchAll();
                 Commands.Register();
-
+                HttpServer.Create();
             }
             else
             {
+                HttpServer.Destroy();
                 harmony.UnpatchAll(modEntry.Info.Id);
             }
             return true;

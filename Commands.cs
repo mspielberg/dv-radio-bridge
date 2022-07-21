@@ -3,6 +3,7 @@ using Crosstales.NAudio.Wave;
 using Crosstales.NAudio.Wave.Compression;
 using HarmonyLib;
 using System;
+using System.IO;
 
 namespace DvMod.RadioBridge
 {
@@ -64,14 +65,18 @@ namespace DvMod.RadioBridge
                 }
             });
 
+            Recording? recording = null;
+
             Commands.Register("startrecording", _ =>
             {
-                Recording.BeginCapture();
+                recording = new Recording(File.Create(Path.Combine(Main.mod!.Path, $"output-{DateTime.Now:s}.mp3")));
+                recording.BeginCapture();
             });
 
             Commands.Register("stoprecording", _ =>
             {
-                Recording.StopCapture();
+                recording?.StopCapture();
+                recording = null;
             });
         }
     }
