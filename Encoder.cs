@@ -1,7 +1,6 @@
 using LameDLLWrap;
 using System;
 using System.IO;
-using System.Runtime.InteropServices;
 
 namespace DvMod.RadioBridge
 {
