@@ -10,9 +10,10 @@ namespace DvMod.RadioBridge
         public bool enableLogging = false;
 
         public readonly string? version = Main.mod?.Info.Version;
-        
-        public Settings()
+
+        override public void Save(UnityModManager.ModEntry entry)
         {
+            Save(this, entry);
         }
 
         public void OnChange()
