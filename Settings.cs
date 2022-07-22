@@ -7,7 +7,7 @@ namespace DvMod.RadioBridge
         [Draw("HTTP server port")]
         public int serverPort = 7100;
         [Draw("Enable logging")]
-        public bool enableLogging = false;
+        public bool enableLogging = true;
 
         public readonly string? version = Main.mod?.Info.Version;
 
