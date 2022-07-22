@@ -2,7 +2,7 @@
   "Id": "RadioBridge",
   "DisplayName": "Radio Bridge",
   "Author": "Zeibach",
-  "Version": "0.1.0",
+  "Version": "0.2.0",
   "LoadAfter": [],
   "AssemblyName": "RadioBridge.dll",
   "EntryMethod": "DvMod.RadioBridge.Main.Load",
