@@ -1,6 +1,6 @@
 {
   "Releases":
   [
-      {"Id": "HingesFix", "Version": "0.1.0", "DownloadUrl": "https://github.com/mspielberg/dv-hinges-fix/releases/download/v0.1.0/HingesFix_0.1.0.zip"}
+      {"Id": "RadioBridge", "Version": "0.1.0", "DownloadUrl": "https://github.com/mspielberg/dv-radio-bridge/releases/download/v0.1.0/RadioBridge_0.1.0.zip"}
   ]
 }
