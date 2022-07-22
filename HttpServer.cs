@@ -33,6 +33,7 @@ namespace DvMod.RadioBridge
                         catch (Exception e)
                         {
                             Main.DebugLog(() => $"Exception while handling HTTP request ({context.Request.Url}): {e}");
+                            context.Response.Close();
                         }
                     });
                 }
