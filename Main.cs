@@ -23,7 +23,7 @@ namespace DvMod.RadioBridge
 
         static private void OnGUI(UnityModManager.ModEntry modEntry)
         {
-            settings.Draw(modEntry);
+            settings.Draw();
         }
 
         static private void OnSaveGUI(UnityModManager.ModEntry modEntry)

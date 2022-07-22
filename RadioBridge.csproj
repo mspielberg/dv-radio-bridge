@@ -19,7 +19,9 @@
     <Reference Include="DV.RadioPlayer"/>
     <Reference Include="LameDLLWrap" />
     <Reference Include="PlaylistsNET113" />
+    <Reference Include="UnityEngine" />
     <Reference Include="UnityEngine.CoreModule" />
+    <Reference Include="UnityEngine.IMGUIModule" />
     <Reference Include="UnityModManager" />
   </ItemGroup>
 </Project>
