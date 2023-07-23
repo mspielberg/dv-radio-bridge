@@ -1,6 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
+    <PlatformTarget>x64</PlatformTarget>
     <LangVersion>8.0</LangVersion>
     <Nullable>enable</Nullable>
     <RootNamespace>DvMod.RadioBridge</RootNamespace>
@@ -8,17 +9,25 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="RedworkDE.Publicizer" Version="0.2.2" />
-    <PublicizeAssembly Include="Assembly-CSharp" Private="True" Readonly="True" />
+    <PackageReference Include="Krafs.Publicizer" Version="2.2.1" />
+    <Publicize Include="Assembly-CSharp" IncludeCompilerGeneratedMembers="false" />
+    <Publicize Include="CommandTerminal" IncludeCompilerGeneratedMembers="false" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="LameDLLWrap" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="Assembly-CSharp" />
+    <Reference Include="CommandTerminal" />
+    <Reference Include="CTNAudio" />
+    <Reference Include="DV.RadioPlayer"/>
+    <Reference Include="PlaylistsNET" />
   </ItemGroup>
 
   <ItemGroup>
     <Reference Include="0Harmony" />
-    <Reference Include="Assembly-CSharp" />
-    <Reference Include="CTNAudio" />
-    <Reference Include="DV.RadioPlayer"/>
-    <Reference Include="LameDLLWrap" />
-    <Reference Include="PlaylistsNET113" />
     <Reference Include="UnityEngine" />
     <Reference Include="UnityEngine.CoreModule" />
     <Reference Include="UnityEngine.IMGUIModule" />

@@ -18,16 +18,21 @@ namespace DvMod.RadioBridge
             }
         }
 
-        public static void Register(string name, Action<CommandArg[]> proc)
+        public static void Register(CommandInfo command)
         {
-            name = Main.mod!.Info.Id + "." + name;
+            command.name = Main.mod!.Info.Id + "." + command;
             if (Terminal.Shell == null)
                 return;
-            if (Terminal.Shell.Commands.Remove(name.ToUpper()))
-                Main.DebugLog($"replacing existing command {name}");
+            if (Terminal.Shell.Commands.Remove(command.name.ToUpper()))
+            {
+                Main.DebugLog($"replacing existing command {command.name}");
+                Terminal.Autocomplete.known_words.Remove(command.name.ToLower());
+            }
             else
-                Terminal.Autocomplete.Register(name);
-            Terminal.Shell.AddCommand(name, proc);
+            {
+                Terminal.Autocomplete.Register(command);
+            }
+            Terminal.Shell.AddCommand(command);
         }
 
         public static void Register()
@@ -40,43 +45,58 @@ namespace DvMod.RadioBridge
     {
         public static void Register()
         {
-            Commands.Register("enumerateaudiocapture", _ =>
+            Commands.Register(new CommandInfo
             {
-                for (int i = 0; i < WaveInEvent.DeviceCount; i++)
+                name = "enumerateaudiocapture",
+                proc = _ =>
                 {
-                    var deviceInfo = WaveInEvent.GetCapabilities(i);
-                    Terminal.Log($"Device #{i}: {deviceInfo.ProductName}");
-                }
+                    for (int i = 0; i < WaveInEvent.DeviceCount; i++)
+                    {
+                        var deviceInfo = WaveInEvent.GetCapabilities(i);
+                        Terminal.Log($"Device #{i}: {deviceInfo.ProductName}");
+                    }
+                },
             });
 
-            Commands.Register("enumerateacm", _ =>
+            Commands.Register(new CommandInfo
             {
-                foreach (var driver in AcmDriver.EnumerateAcmDrivers())
+                name = "enumerateacm", proc = _ =>
                 {
-                    using (driver)
+                    foreach (var driver in AcmDriver.EnumerateAcmDrivers())
                     {
-                        Terminal.Log($"{driver.DriverId}: {driver.ShortName} ({driver.LongName})");
-                        driver.Open();
-                        foreach (var formatTag in driver.FormatTags)
+                        using (driver)
                         {
-                            Terminal.Log($"FormatTag: {formatTag}");
+                            Terminal.Log($"{driver.DriverId}: {driver.ShortName} ({driver.LongName})");
+                            driver.Open();
+                            foreach (var formatTag in driver.FormatTags)
+                            {
+                                Terminal.Log($"FormatTag: {formatTag}");
+                            }
                         }
                     }
-                }
+                },
             });
 
             Recording? recording = null;
 
-            Commands.Register("startrecording", _ =>
+            Commands.Register(new CommandInfo
             {
-                recording = new Recording(File.Create(Path.Combine(Main.mod!.Path, $"output-{DateTime.Now:s}.mp3")));
-                recording.BeginCapture();
+                name = "startrecording",
+                proc = _ =>
+                {
+                    recording = new Recording(File.Create(Path.Combine(Main.mod!.Path, $"output-{DateTime.Now:s}.mp3")));
+                    recording.BeginCapture();
+                },
             });
 
-            Commands.Register("stoprecording", _ =>
+            Commands.Register(new CommandInfo
             {
-                recording?.StopCapture();
-                recording = null;
+                name = "stoprecording",
+                proc = _ =>
+                {
+                    recording?.StopCapture();
+                    recording = null;
+                },
             });
         }
     }
