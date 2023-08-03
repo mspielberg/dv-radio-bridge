@@ -47,14 +47,14 @@ namespace DvMod.RadioBridge
             waveIn.DataAvailable += OnDataAvailable;
             waveIn.RecordingStopped += OnRecordingStopped;
             waveIn.StartRecording();
-            Main.DebugLog(() => $"Started recording from device {waveIn.DeviceNumber} ({WaveInEvent.GetCapabilities(waveIn.DeviceNumber).ProductName})");
+            Main.DebugLog(() => $"Started capturing from device {waveIn.DeviceNumber} ({WaveInEvent.GetCapabilities(waveIn.DeviceNumber).ProductName})");
         }
 
         public void StopCapture()
         {
             waveIn.StopRecording();
             encoder!.Flush(output!);
-            Main.DebugLog(() => $"Stopped recording from device {waveIn.DeviceNumber} ({WaveInEvent.GetCapabilities(waveIn.DeviceNumber).ProductName})");
+            Main.DebugLog(() => $"Stopped capturing from device {waveIn.DeviceNumber} ({WaveInEvent.GetCapabilities(waveIn.DeviceNumber).ProductName})");
         }
 
         private void OnDataAvailable(object sender, WaveInEventArgs args)
@@ -68,6 +68,8 @@ namespace DvMod.RadioBridge
             output.Close();
             if (args.Exception != null && !(args.Exception is SocketException))
                 Main.DebugLog(() => "Recording stopped with exception:", args.Exception);
+            else
+                Main.DebugLog(() => "Recording stopped");
         }
     }
 }
