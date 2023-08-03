@@ -8,11 +8,21 @@ namespace DvMod.RadioBridge
     public static class Main
     {
         public static UnityModManager.ModEntry? mod;
-        public static readonly Settings settings = new Settings();
+        public static Settings settings = new Settings();
 
         static public bool Load(UnityModManager.ModEntry modEntry)
         {
             mod = modEntry;
+
+            try
+            {
+                Settings loaded = Settings.Load<Settings>(modEntry);
+                settings = loaded.version == modEntry.Info.Version ? loaded : new Settings();
+            }
+            catch
+            {
+                settings = new Settings();
+            }
 
             modEntry.OnGUI = OnGUI;
             modEntry.OnSaveGUI = OnSaveGUI;
