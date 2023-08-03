@@ -23,3 +23,33 @@ Back to the game!
 1. Load up Derail Valley, and grab your boombox.
 1. Turn on the boombox, set it to Radio mode, and select the new "AudioBridge" radio station that appears after your other radio stations.
 1. Enjoy the phat b34ts!
+
+# How To Build
+
+To build Radio Bridge from source, simply run the command `dotnet build RadioBridge.csproj`.
+You'll need to do some setup first though in order to get that working.
+
+## Assembly References
+
+Create a filed called `Directory.Build.props` and paste the following code into it.
+Adjust the paths as necessary to match your system's configuration.
+
+```xml
+<Project>
+  <PropertyGroup>
+    <Deterministic>true</Deterministic>
+    <GenerateFullPaths>true</GenerateFullPaths>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <AssemblySearchPaths>
+      {CandidateAssemblyFiles};
+      {HintPathFromItem};
+      {TargetFrameworkDirectory};
+      {RawFileName};
+      C:\Program Files (x86)\Steam\steamapps\common\Derail Valley\DerailValley_Data\Managed\;
+      C:\Program Files (x86)\Steam\steamapps\common\Derail Valley\DerailValley_Data\Managed\UnityModManager\
+    </AssemblySearchPaths>
+  </PropertyGroup>
+</Project>
+```

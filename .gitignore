@@ -2,3 +2,6 @@
 bin/
 obj/
 /dv
+Directory.Build.props
+.vscode/
+*.sln
