@@ -30,7 +30,7 @@ namespace DvMod.RadioBridge
             for (int i = 0; i < WaveInEvent.DeviceCount; i++)
             {
                 var deviceInfo = WaveInEvent.GetCapabilities(i);
-                if (deviceInfo.ProductName.Equals(Main.settings.inputDeviceName))
+                if (deviceInfo.ProductName.Equals(Main.Settings.inputDeviceName))
                     return i;
             }
             return -1;
@@ -40,7 +40,7 @@ namespace DvMod.RadioBridge
         {
             var deviceId = FindInputDevice();
             if (deviceId < 0)
-                throw new Exception($"Could not find input device: \"{Main.settings.inputDeviceName}\"");
+                throw new Exception($"Could not find input device: \"{Main.Settings.inputDeviceName}\"");
             encoder = new Encoder();
             waveIn.DeviceNumber = deviceId;
             waveIn.WaveFormat = new WaveFormat(48000, 2);

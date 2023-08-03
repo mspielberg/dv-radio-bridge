@@ -8,11 +8,12 @@ namespace DvMod.RadioBridge
     public static class Main
     {
         public static UnityModManager.ModEntry? mod;
-        public static readonly Settings settings = new Settings();
+        public static Settings Settings { get; private set; } = new Settings();
 
         static public bool Load(UnityModManager.ModEntry modEntry)
         {
             mod = modEntry;
+            try { Settings = Settings.Load<Settings>(modEntry); } catch {}
 
             modEntry.OnGUI = OnGUI;
             modEntry.OnSaveGUI = OnSaveGUI;
@@ -23,12 +24,12 @@ namespace DvMod.RadioBridge
 
         static private void OnGUI(UnityModManager.ModEntry modEntry)
         {
-            settings.Draw();
+            Settings.Draw();
         }
 
         static private void OnSaveGUI(UnityModManager.ModEntry modEntry)
         {
-            settings.Save(modEntry);
+            Settings.Save(modEntry);
         }
 
         static private bool OnToggle(UnityModManager.ModEntry modEntry, bool value)
@@ -50,19 +51,19 @@ namespace DvMod.RadioBridge
 
         public static void DebugLog(string msg)
         {
-            if (settings.enableLogging)
+            if (Settings.enableLogging)
                 mod!.Logger.Log(msg);
         }
 
         public static void DebugLog(Func<string> msg)
         {
-            if (settings.enableLogging)
+            if (Settings.enableLogging)
                 DebugLog(msg());
         }
 
         public static void DebugLog(Func<string> msg, Exception e)
         {
-            if (settings.enableLogging)
+            if (Settings.enableLogging)
                 mod!.Logger.LogException(msg(), e);
         }
     }

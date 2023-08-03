@@ -14,8 +14,8 @@ namespace DvMod.RadioBridge
         {
             if (!listener.IsListening)
             {
-                listener.Prefixes.Add($"http://*:{Main.settings.serverPort}/");
-                Main.DebugLog(() => $"Starting HTTP server on port {Main.settings.serverPort}");
+                listener.Prefixes.Add($"http://*:{Main.Settings.serverPort}/");
+                Main.DebugLog(() => $"Starting HTTP server on port {Main.Settings.serverPort}");
                 listener.Start();
             }
 

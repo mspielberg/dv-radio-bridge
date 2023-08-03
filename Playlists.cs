@@ -15,7 +15,7 @@ namespace DvMod.RadioBridge
             PlsPlaylistEntry entry = new PlsPlaylistEntry()
             {
                 Title = Main.mod!.Info.DisplayName,
-                Path = $"http://localhost:{Main.settings.serverPort}",
+                Path = $"http://localhost:{Main.Settings.serverPort}",
                 Nr = pls.PlaylistEntries.Last().Nr + 1,
             };
             pls.PlaylistEntries.Add(entry);
