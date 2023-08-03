@@ -10,7 +10,7 @@ namespace DvMod.RadioBridge
         static DateTime startTime;
         static DateTime lastTime;
 
-        static bool Prefix()
+        public static bool Prefix()
         {
             if (lastTime == null)
                 lastTime = DateTime.Now;
@@ -23,7 +23,7 @@ namespace DvMod.RadioBridge
 
             DateTime now = DateTime.Now;
 
-            if ((now - lastTime).TotalMilliseconds > Main.Settings.recoveryReset)
+            if ((now - lastTime).TotalMilliseconds > Main.settings.recoveryReset)
             {
                 startTime = lastTime = now;
                 return false; // skip the original method in which playback is stopped
@@ -31,7 +31,7 @@ namespace DvMod.RadioBridge
 
             lastTime = now;
 
-            if ((now - startTime).TotalMilliseconds < Main.Settings.recoveryTimeout * 1000)
+            if ((now - startTime).TotalMilliseconds < Main.settings.recoveryTimeout * 1000)
             {
                 return false; // skip the original method in which playback is stopped
             }
