@@ -9,7 +9,7 @@ namespace DvMod.RadioBridge
 {
     public static class Commands
     {
-        [HarmonyPatch(typeof(Terminal), nameof(Terminal.Start))]
+        [HarmonyPatch(typeof(Terminal), nameof(Terminal.Awake))]
         public static class RegisterCommandsPatch
         {
             public static void Postfix()
