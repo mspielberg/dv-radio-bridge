@@ -4,7 +4,7 @@ using System;
 
 namespace DvMod.RadioBridge
 {
-    [HarmonyPatch(typeof(RadioPlayer), "LogNoMoreData")]
+    [HarmonyPatch(typeof(RadioPlayer), "LogDataError")]
     static class StreamRecovery
     {
         static DateTime startTime;
