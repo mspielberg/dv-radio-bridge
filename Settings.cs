@@ -11,10 +11,6 @@ namespace DvMod.RadioBridge
         public int serverPort = 7100;
         [Draw("Enable logging")]
         public bool enableLogging = true;
-        [Draw("Seconds to wait for the data stream to recover before stopping playback")]
-        public int recoveryTimeout = 2;
-        [Draw("Milliseconds after which the recovery timeout will be reset if no errors have occurred")]
-        public int recoveryReset = 500;
 
         public readonly string? version = Main.mod?.Info.Version;
 
