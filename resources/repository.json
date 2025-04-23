@@ -1,6 +1,7 @@
 {
   "Releases":
   [
+      {"Id": "RadioBridge", "Version": "1.0.4", "DownloadUrl": "https://github.com/mspielberg/dv-radio-bridge/releases/download/v1.0.4/RadioBridge_1.0.4.zip"},
       {"Id": "RadioBridge", "Version": "1.0.3", "DownloadUrl": "https://github.com/mspielberg/dv-radio-bridge/releases/download/v1.0.3/RadioBridge_1.0.3.zip"},
       {"Id": "RadioBridge", "Version": "1.0.2", "DownloadUrl": "https://github.com/mspielberg/dv-radio-bridge/releases/download/v1.0.2/RadioBridge_1.0.2.zip"},
       {"Id": "RadioBridge", "Version": "1.0.1", "DownloadUrl": "https://github.com/mspielberg/dv-radio-bridge/releases/download/v1.0.1/RadioBridge_1.0.1.zip"},

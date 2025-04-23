@@ -5,7 +5,7 @@
     <LangVersion>8.0</LangVersion>
     <Nullable>enable</Nullable>
     <RootNamespace>DvMod.RadioBridge</RootNamespace>
-    <InformationalVersion>1.0.3</InformationalVersion>
+    <InformationalVersion>1.0.4</InformationalVersion>
   </PropertyGroup>
 
   <ItemGroup>
